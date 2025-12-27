@@ -6,9 +6,7 @@
 
 'use strict';
 
-import {Application} from '../../lib'
-
-import Promise from 'bluebird'
+const {Application} = require('../..')
 
 
 describe("Application", () => {

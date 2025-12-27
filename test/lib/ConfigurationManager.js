@@ -6,8 +6,8 @@
 
 'use strict';
 
-import {ConfigurationManager} from '../../lib'
-import should from 'should'
+const {ConfigurationManager} = require('../..')
+const should = require('should')
 
 describe("ConfigurationManager", () => {
   var instance
@@ -22,13 +22,13 @@ describe("ConfigurationManager", () => {
   describe("Node Env", () => {
     it("uses NODE_ENV", (done) => {
       instance = new ConfigurationManager({namespace: 'nxus'})
-      process.NODE_ENV = 'test'
+      process.env.NODE_ENV = 'test'
       instance.getNodeEnv().should.equal('test')
       done()
     })
     it("prefers passed in env", (done) => {
       instance = new ConfigurationManager({env: "production", namespace: 'nxus'})
-      process.NODE_ENV = 'test'
+      process.env.NODE_ENV = 'test'
       instance.getNodeEnv().should.equal('production')
       done()
     })

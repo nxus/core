@@ -1,5 +1,5 @@
 #!/usr/bin/env node
 
-var Application = require('../lib').Application;
+var Application = require('..').Application;
 var app = new Application({appDir: process.cwd()});
 app.start();

@@ -6,7 +6,7 @@
 
 'use strict';
 
-import {PluginManager} from '../../lib/'
+const {PluginManager} = require('../..')
 
 describe("PluginManager", () => {
   describe("Load", () => {
@@ -14,7 +14,13 @@ describe("PluginManager", () => {
 
     it("should not be null", () => PluginManager.should.not.be.null)
 
-    it("should be instantiated", () => (instance = new PluginManager()).should.not.be.null)
+    it("should be instantiated", () => {
+      const app = {
+        log: {debug: () => {}, warn: () => {}, error: () => {}}
+      }
+      instance = new PluginManager(app, {namespace: 'nxus'})
+      instance.should.not.be.null
+    })
   })
 
 })

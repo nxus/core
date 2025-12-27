@@ -1,6 +1,8 @@
 node_modules
 lib
 !test/lib
+dist
 npm-debug.log
-docs
+docs/.vitepress/dist
+docs/.vitepress/cache
 *.tgz

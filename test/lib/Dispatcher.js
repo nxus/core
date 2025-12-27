@@ -1,6 +1,6 @@
 'use strict';
 
-import {Dispatcher} from '../../lib'
+const {Dispatcher} = require('../..')
 
 describe("Dispatcher", () => {
   module = null
@@ -101,11 +101,11 @@ describe("Dispatcher", () => {
         return results.map((x) => {return x+2})
       })
 
-      return module.emit('event', (results) => {
+      return module.emit('event').then((result) => {
         result.length.should.equal(3)
-        result.includes(3).should.be.true()
         result.includes(4).should.be.true()
         result.includes(5).should.be.true()
+        result.includes(6).should.be.true()
       })
     })
     it("should accumulate afters for non-array", () => {
@@ -119,7 +119,7 @@ describe("Dispatcher", () => {
         return results + 2
       })
 
-      return module.emit('event', (results) => {
+      return module.emit('event').then((results) => {
         results.should.equal(6)
       })
     })
@@ -130,7 +130,7 @@ describe("Dispatcher", () => {
       module.after('event', (results, args) => {
         return args[0]
       })
-      return module.emit('event', 5, (results) => {
+      return module.emit('event', 5).then((results) => {
         results.should.equal(5)
       })
     })
@@ -141,7 +141,7 @@ describe("Dispatcher", () => {
       module.after('event', (results) => {
         return
       })
-      return module.emit('event', 5, (results) => {
+      return module.emit('event', 5).then((results) => {
         results.should.equal(3)
       })
     })

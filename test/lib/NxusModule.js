@@ -6,7 +6,7 @@
 
 'use strict';
 
-import {NxusModule, application} from '../../lib/'
+const {NxusModule, application} = require('../..')
 
 class SubModule extends NxusModule {
 

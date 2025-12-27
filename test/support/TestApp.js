@@ -1,12 +1,11 @@
 'use strict';
 
-import _ from 'underscore'
-import sinon from 'sinon'
-import Promise from 'bluebird'
+const _ = require('underscore')
+const sinon = require('sinon')
 
-import { Dispatcher, ModuleProxy, ProxyMethods } from '../../'
+const {Dispatcher, ModuleProxy, ProxyMethods} = require('../..')
 
-const stubPromise = sinon.createStubInstance(Promise)
+const stubPromise = Promise.resolve()
 
 class TestApp extends Dispatcher {
   constructor(opts = {}) {
@@ -80,11 +79,13 @@ class TestApp extends Dispatcher {
   }
 
   launch() {
-    return new Promise.mapSeries(['init', 'load', 'startup', 'launch'], (e) => {
-      return this.emit(e)
-    })
+    return (async () => {
+      for (let e of ['init', 'load', 'startup', 'launch']) {
+        await this.emit(e)
+      }
+    })()
   }
 
 }
 
-export default TestApp;
+module.exports = TestApp

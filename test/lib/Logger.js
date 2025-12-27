@@ -7,9 +7,7 @@
 
 'use strict';
 
-import {logger} from '../../lib'
-import {Logger} from '../../lib'
-import TestApp from '../../lib/test/support/TestApp'
+const {logger, Logger} = require('../..')
 
 describe("Logger", () => {
   

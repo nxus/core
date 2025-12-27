@@ -1,0 +1,5 @@
+{
+  "siteName": "Nxus App",
+  "host": "localhost",
+  "baseUrl": "localhost:3001"
+}

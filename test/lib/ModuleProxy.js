@@ -1,7 +1,7 @@
 'use strict';
 
-import {ModuleProxy} from '../../lib'
-import TestApp from '../../lib/test/support/TestApp'
+const {ModuleProxy} = require('../..')
+const TestApp = require('../support/TestApp')
 
 describe("ModuleProxy", () => {
   var module;
@@ -26,8 +26,8 @@ describe("ModuleProxy", () => {
         constructor() {
           this.x = 1
           other.use(this)
-          this.respond('testEvent', ::this._testEvent)
-          this.respond('namedEvent', ::this._handler)
+          this.respond('testEvent', this._testEvent.bind(this))
+          this.respond('namedEvent', this._handler.bind(this))
         }
         _handler (a) {
           return 1
